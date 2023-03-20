@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.frmTax"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+            xmlns:vm="clr-namespace:FirstFloor.ModernUI.ViewModel"
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+             mc:Ignorable="d" >
+   
+
+    <UserControl.Resources>
+        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type  TextBox}">
+            <Setter Property="MaxLength" Value="30" />
+        </Style>
+    </UserControl.Resources>
+
+    <!--<ScrollViewer>
+        <StackPanel>
+            <StackPanel.DataContext>
+                <vm:CompanyDetViewModel/>
+            </StackPanel.DataContext>
+
+            <Grid Margin="20,20,0,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="490"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <GroupBox Header="Tax Details">
+
+                    <Grid Grid.Row="0" Grid.Column="0" Margin="20,7,0,0"  >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="10"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Target="{Binding ElementName=txtTaxName}" Content="Tax" />
+                        <TextBox x:Name="txtTaxName" Width="150"  HorizontalAlignment="Left" Text="{Binding CompanyName, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="0" Grid.Column="2"   />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Description" Target="{Binding ElementName=txtDescription}" />
+                        <TextBox Grid.Row="2" Grid.Column="2" Width="150"  HorizontalAlignment="Left"  x:Name="txtDescription" Height="55" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True" Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                      
+                        <StackPanel Grid.ColumnSpan="3" Grid.Row="4" Margin="50,0,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Content="Save" x:Name="btnSubmit"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="25"  Click="Submit_Click"/>
+                            <Button Content="Clear" x:Name="btnClear" Margin="5,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25"  Click="Clear_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                </GroupBox>
+
+                <GroupBox x:Name="gridgroupbox" Header="Tax Details list" Grid.Row="1"  Grid.Column="0" >
+
+
+                    <DataGrid  HorizontalAlignment="Center"  Name="gridCategory" ItemsSource="{Binding}" CanUserAddRows="False"  AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <mui:DataGridTextColumn Header="LookupDetailsID" Visibility="Collapsed"   Binding="{Binding LookupDetailsID}"/>
+                            <mui:DataGridTextColumn Header="Category"  Width="120"  Binding="{Binding ShortDescription}"/>
+
+                            <mui:DataGridTextColumn Header="Description" Width="180"  Binding="{Binding LongDescription}" />
+
+                            <DataGridTemplateColumn >
+                                <DataGridTemplateColumn.Header >
+                                    <TextBlock > Delete</TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Height="25" Background="Transparent" BorderBrush="Transparent" Click="DeleteButton_Click" CommandParameter="{Binding Path=LookupDetailsID}">
+                                            <Image Stretch="Uniform" Source="Images\Delete-icon.png" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </GroupBox>
+
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>-->
+</UserControl>
+

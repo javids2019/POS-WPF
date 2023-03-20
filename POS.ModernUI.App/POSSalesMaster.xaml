@@ -1,0 +1,374 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.POSSalesMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+          
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+             xmlns:vm="clr-namespace:FirstFloor.ModernUI.ViewModel"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type  TextBox}">
+            <Setter Property="MaxLength" Value="30" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <StackPanel >
+            <StackPanel.DataContext>
+                <vm:StockSalesViewModel />
+            </StackPanel.DataContext>
+            <!--<TextBlock Text="Sales" Style="{StaticResource Heading2}" Margin="0,0,0,8" />-->
+
+
+            <!-- actual form starts here -->
+            <StackPanel x:Name="Form" Orientation="Vertical">
+
+
+
+                <StackPanel.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="Margin" Value="0,0,0,4" />
+                    </Style>
+
+                    <Style x:Key="LeftHeading" TargetType="Label">
+                        <Setter Property="FontFamily" Value="Segoe UI" />
+                        <Setter Property="FontSize" Value="16" />
+
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="Margin" Value="5,0,0,0" />
+                        <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                    </Style>
+
+                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="Width" Value="70" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+
+                    <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                    <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                        <Setter Property="Padding" Value="0,3" />
+                    </Style>
+                </StackPanel.Resources>
+                <Border >
+                    <GroupBox Header="Customer">
+                        <Grid>
+
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                                <Label Content="Name"  Target="{Binding ElementName=TextFirstName}"/>
+                                <ComboBox x:Name="cmbCustomer" DisplayMemberPath="FirstName" SelectedValuePath="CustomerDetailsID" IsEditable="True" Width="150"></ComboBox>
+                            </StackPanel>
+
+
+
+                            <StackPanel Grid.Row="0" Grid.Column="3" >
+                                <Label Content="Mobile No" />
+                                <ComboBox x:Name="comMobileNo" IsEditable="True" Width="150"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="5" >
+                                <Label Content="Address" />
+                                <TextBox x:Name="txtAddress"  VerticalScrollBarVisibility="Auto" AcceptsReturn="True"  Width="150" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="7" >
+                                <Label x:Name="lblCustomerDetails" Width="Auto" />
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Border>
+
+
+                <Border >
+                    <GroupBox Header="Stock Items">
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="31.5"></ColumnDefinition>
+                                <ColumnDefinition Width="188.5"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+
+
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                <Label Content="Item Code"   Target="{Binding ElementName=comStockItemCode}"/>
+
+                                <ComboBox x:Name="comStockItemCode"  DisplayMemberPath="ItemCode" SelectedValuePath="PurchaseDetailsID" Width="150" DropDownClosed="cmbItemCode_DropDownClosed"  
+                                  Text="{Binding Category, Mode=TwoWay, ValidatesOnDataErrors=True}"></ComboBox>
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Row="1" Grid.Column="4" >
+                                <Label Content="Qty" Target="{Binding ElementName=txtQty}"  />
+
+                                <TextBox x:Name="txtQty" MaxLength="3"   Text="{Binding Quantity, Mode=TwoWay, ValidatesOnDataErrors=True}" PreviewTextInput="NumericOnly"  Width="50" />
+                                <Label Content="Rate"  Margin="5,0,0,0" Width="30" />
+                                <TextBox x:Name="txtRate" Width="75" IsReadOnly="True" Text="{Binding Rate,StringFormat={}{0:C}}" HorizontalContentAlignment="Right" />
+                            </StackPanel>
+
+
+
+                            <StackPanel Grid.Row="1" Grid.Column="6" >
+                                <Label Content="Available Qty"  Width="80"    Target="{Binding ElementName=TextAvailableQty}"/>
+                                <TextBox x:Name="txtAvailableQty" IsReadOnly="True" Width="50" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.ColumnSpan="2"  >
+                                <Label Content="Category"  />
+                                <ComboBox x:Name="cmbCategory"  DisplayMemberPath="ShortDescription" SelectedValuePath="LookupDetailsID" Width="150"  DropDownClosed="cmbCategory_DropDownClosed"
+                                  Text="{Binding Category, Mode=TwoWay, ValidatesOnDataErrors=True}"></ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="4"  >
+                                <Label Content="Sub Cat."    />
+                                <ComboBox x:Name="cmbSubCategory"  DisplayMemberPath="ShortDescription" Width="160"  SelectedValuePath="LookupDetailsID"  DropDownClosed="cmbSubCategory_DropDownClosed"
+                                  Text="{Binding SubCategory, Mode=TwoWay, ValidatesOnDataErrors=True}" ></ComboBox>
+
+
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="6"  >
+                                <Label Content="Type"   Width="80" />
+                                <ComboBox x:Name="cmbType" Width="100" TabIndex="11" SelectedIndex="0" HorizontalAlignment="Right" 
+                                       Text="{Binding Type, Mode=TwoWay, ValidatesOnDataErrors=True}" DropDownClosed="cmbType_DropDownClosed" LostFocus="cmbType_LostFocus">
+                                    <ComboBoxItem>Nos</ComboBoxItem>
+                                    <ComboBoxItem>Kg</ComboBoxItem>
+                                    <ComboBoxItem>gram</ComboBoxItem>
+                                    <ComboBoxItem>Liters</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2"  Grid.ColumnSpan="8" >
+                                <Label Content="Description"     Target="{Binding ElementName=txtItemDescription}"/>
+                                <Label x:Name="txtItemDescription" Width="350"/>
+                            </StackPanel>
+                            <!--<StackPanel  Grid.Row="3" Grid.Column="1"  >
+                        <Label />
+                        <CheckBox Content="I agree to the terms of use" />
+                    </StackPanel>-->
+
+                            <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="8" >
+                                <Button Margin="5,0,0,0" x:Name="btnAddItem" Click="btnAddItem_Click" >Add Items</Button>
+                                <Button Margin="5,0,0,0" x:Name="btnPrint"  Click="btnPrint_Click" Width="90">
+                                    <TextBlock TextWrapping="Wrap" >Print and Save</TextBlock>
+                                </Button>
+                                <Button Margin="5,0,0,0" x:Name="btnCalculate" Click="btnCalculate_Click" Width="90">Calculate</Button>
+                            </StackPanel>
+
+
+
+
+                        </Grid>
+
+
+                    </GroupBox>
+
+                </Border>
+
+                <Border >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" >
+                            <GroupBox Header="Item Details">
+                                <DataGrid  HorizontalAlignment="Left" CanUserAddRows="False" x:Name="gridStockItem" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                                    <DataGrid.Columns>
+                                        <mui:DataGridTextColumn  Visibility="Collapsed"  Binding="{Binding PurchaseDetailsID}"/>
+                                        <mui:DataGridTextColumn Header="S No" Width="65"  Binding="{Binding ID}"/>
+                                        <mui:DataGridTextColumn Header="Item Description" Width="290" Binding="{Binding Description}" />
+                                        <mui:DataGridTextColumn Header="Qty" Binding="{Binding Quantity}"/>
+                                        <mui:DataGridTextColumn Header="Amount" Width="90" Binding="{Binding SellingPrice}"  />
+
+                                        <DataGridTemplateColumn >
+                                            <DataGridTemplateColumn.Header >
+                                                <TextBlock > Delete</TextBlock>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button  Height="25" Background="Transparent" BorderBrush="Transparent" Click="DeleteButton_Click" CommandParameter="{Binding Path=PurchaseDetailsID}">
+                                                        <Image Stretch="Uniform" Source="..\Images\Delete-icon.png" />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </GroupBox>
+                        </StackPanel>
+
+
+                        <GroupBox Grid.Column="1" Width="auto" Background="Azure"  Header="Amount Details">
+
+                            <Grid Margin="0,15,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"></ColumnDefinition>
+                                    <ColumnDefinition Width="130"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Content="Total Amount" Style="{StaticResource LeftHeading}" Grid.Row="0" Grid.Column="0" />
+                                <Label x:Name="lblTotalAmount" Style="{StaticResource LeftHeading}"  Grid.Row="0"  Grid.Column="1" />
+
+                                <Label Content="Net Amount" Style="{StaticResource LeftHeading}" Grid.Row="1" Grid.Column="0"   Target="{Binding ElementName=TextItemName1}"/>
+                                <Label x:Name="lblNetAmount"  Style="{StaticResource LeftHeading}"  Grid.Row="1" Grid.Column="1" Target="{Binding ElementName=TextItemName2}"/>
+
+
+                                <Label Content="Total Quantity" Style="{StaticResource LeftHeading}" Grid.Row="2"  Grid.Column="0" Target="{Binding ElementName=TextItemName1}"/>
+                                <Label  x:Name="lblTotalQuantity"  Grid.Row="2" Grid.Column="2" Style="{StaticResource LeftHeading}" Target="{Binding ElementName=TextItemName2}"/>
+
+                                <Label Content="Provided Amount" Style="{StaticResource LeftHeading}"  Grid.Row="3" Grid.Column="0"  Target="{Binding ElementName=TextItemName1}"/>
+                                <Label x:Name="lblProvidedAmount"   Grid.Row="3" Grid.Column="2" Style="{StaticResource LeftHeading}" Target="{Binding ElementName=TextItemName2}"/>
+
+                                <Label Content="Balance Amount"  Style="{StaticResource LeftHeading}" Grid.Row="4" Grid.Column="0"   Target="{Binding ElementName=TextItemName1}"/>
+                                <Label x:Name="lblBalanceAmount"   Grid.Row="4" Grid.Column="2"  Style="{StaticResource LeftHeading}" Target="{Binding ElementName=TextItemName2}"/>
+
+
+                            </Grid>
+
+
+                        </GroupBox>
+
+
+
+                    </Grid>
+
+
+                </Border>
+
+                <Border >
+                    <GroupBox Header="Details">
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+
+
+                            </Grid.ColumnDefinitions>
+
+
+
+                            <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                                <Label Content="Discount :"   Target="{Binding ElementName=TextDiscount}"/>
+                                <TextBox x:Name="txtDiscount" Width="80" Text="{Binding ItemName, Mode=TwoWay, ValidatesOnDataErrors=True}" Height="23" VerticalAlignment="Top" />
+                            </StackPanel>
+
+
+                            <StackPanel Grid.Row="0" Grid.Column="5" >
+                                <Label Content="Tax(%):" Width="50" Target="{Binding ElementName=TextTax}"/>
+                                <TextBox x:Name="txtTax" Width="50" />
+                            </StackPanel>
+
+
+
+                            <StackPanel Grid.Row="0" Grid.Column="7">
+                                <Label Content="Payment Mode :" Width="100" Target="{Binding ElementName=RadioPaymentMode}"/>
+                                <RadioButton x:Name="rdCredit"  Width="60" Content="Credit" Margin="8,0,0,0" />
+                                <RadioButton x:Name="rdDebit"  Width="60" Content="Debit"  Margin="8,0,0,0" />
+                                <RadioButton x:Name="rdCash" IsChecked="True" Width="70" Content="Cash"  Margin="8,0,0,0" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="9" >
+                                <Label Content="Provided Amount :" Width="110" Target="{Binding ElementName=txtProvidedAmount}"/>
+                                <TextBox x:Name="txtProvidedAmount" Width="100" />
+                            </StackPanel>
+
+
+
+                        </Grid>
+                    </GroupBox>
+
+                </Border>
+
+                <Border >
+                    <GroupBox Header="More">
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"/>
+
+
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="8" >
+                                <Button Margin="5,0,0,0" x:Name="btnRefresh" Click="btnRefresh_Click" Height="27" VerticalAlignment="Bottom" >Clear</Button>
+                                <Button Margin="5,0,0,0" x:Name="btnOnlyPrint"  Click="btnOnlyprint_Click" Width="90" Height="28" VerticalAlignment="Top">Only Print</Button>
+                                <Button Margin="5,0,0,0" x:Name="btnSave" Click="btnSave_Click" Width="90">Save Items</Button>
+                            </StackPanel>
+
+
+
+                        </Grid>
+                    </GroupBox>
+
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+

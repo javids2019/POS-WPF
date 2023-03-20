@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.frmCompanyMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"          
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+              xmlns:vm="clr-namespace:FirstFloor.ModernUI.ViewModel"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type  TextBox}">
+            <Setter Property="MaxLength" Value="30" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel.DataContext>
+                <vm:CompanyDetViewModel/>
+            </StackPanel.DataContext>
+
+            <Grid Margin="20,20,0,0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="190"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="740"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <GroupBox Header="Company Details">
+
+                    <Grid Grid.Row="0" Grid.Column="0" Margin="90,0,0,0"  >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="10"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Target="{Binding ElementName=txtcompanyName}" Content="Company Name" />
+                        <TextBox x:Name="txtcompanyName" Text="{Binding CompanyName, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="0" Grid.Column="2"   />
+                        <Label Grid.Row="2" Grid.Column="0" Content="Description" Target="{Binding ElementName=txtDescription}" />
+                        <TextBox Grid.Row="2" Grid.Column="2"   x:Name="txtDescription" Text="{Binding Description, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+                        <Label Content="Mobile No" Grid.Row="4" Grid.Column="0" />
+                        <TextBox x:Name="txtMobileNo" Grid.Row="4" Grid.Column="2" />
+
+                        <Label Content="Contact No" Grid.Row="6" Grid.Column="0"/>
+                        <TextBox x:Name="txtContactNo" Grid.Row="6" Grid.Column="2" />
+
+                        <Label Grid.Row="8" Grid.Column="0" Content="Contact Person" />
+                        <TextBox Grid.Row="8" Grid.Column="2" x:Name="txtContactPerson"   />
+
+
+                        <Label Content="Address" Grid.Row="0" Grid.Column="4" />
+                        <TextBox x:Name="txtAddress" Grid.RowSpan="4" Grid.Row="0" Grid.Column="6" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="50"    />
+                        <Label Content="City" Grid.Row="4" Grid.Column="4" />
+                        <TextBox x:Name="txtCity" Grid.Row="4" Grid.Column="6"  />
+
+                        <Label Content="Zip code" Grid.Row="6" Grid.Column="4" Target="{Binding ElementName=TextZipCode}"/>
+                        <TextBox x:Name="txtZipCode" Grid.Row="6" Grid.Column="6"  />
+                        
+                        <Label Content="State" Grid.Row="8" Grid.Column="4"/>
+                        <ComboBox x:Name="CmbState" Grid.Row="8" Grid.Column="6" SelectedIndex="0" >
+                            <ComboBoxItem>Tamil Nadu</ComboBoxItem>
+                            <ComboBoxItem>Karnataka</ComboBoxItem>
+                            <ComboBoxItem>Karala</ComboBoxItem>
+                        </ComboBox>
+                        
+
+                        <StackPanel Grid.ColumnSpan="7" Grid.Row="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button Content="Save" x:Name="btnSubmit"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="25"  Click="Submit_Click"/>
+                            <Button Content="Clear" x:Name="btnClear" Margin="5,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="25"  Click="Clear_Click"/>
+                        </StackPanel>
+
+
+                    </Grid>
+
+                </GroupBox>
+
+                <GroupBox x:Name="gridgroupbox" Header="Company Details list" Grid.Row="1"  Grid.Column="0" >
+
+
+                    <DataGrid  HorizontalAlignment="Center"  Name="gridCompany" ItemsSource="{Binding}" CanUserAddRows="False"  AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <mui:DataGridTextColumn Header="CompanyID" Visibility="Collapsed"   Binding="{Binding CompanyID}"/>
+                            <mui:DataGridTextColumn Header="Company Name"  Binding="{Binding CompanyName}"/>
+
+                            <mui:DataGridTextColumn Header="Contact Person"  Binding="{Binding ContactPerson}" />
+                            <mui:DataGridTextColumn Header="Mobile No" Binding="{Binding MobileNo}" />
+                            <mui:DataGridTextColumn Header="City" Binding="{Binding City}" />
+                            <mui:DataGridTextColumn Header="State" Binding="{Binding State}" />
+
+                            <DataGridTemplateColumn >
+                                <DataGridTemplateColumn.Header >
+                                    <TextBlock > Delete</TextBlock>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Height="25" Background="Transparent" BorderBrush="Transparent" Click="DeleteButton_Click" CommandParameter="{Binding Path=CompanyID}">
+                                            <Image Stretch="Uniform" Source="Images\Delete-icon.png" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.Header>Edit</DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button  Height="25"  Background="Transparent" BorderBrush="Transparent" Click="EditButton_Click" CommandParameter="{Binding Path=CompanyID}">
+                                            <Image Stretch="Uniform" Source="..\Images\Edit.jpg" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </GroupBox>
+
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

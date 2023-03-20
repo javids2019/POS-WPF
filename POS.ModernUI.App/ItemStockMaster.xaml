@@ -1,0 +1,265 @@
+﻿<UserControl x:Class="FirstFloor.ModernUI.App.ItemStockMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:app="clr-namespace:FirstFloor.ModernUI.App"
+             xmlns:vm="clr-namespace:FirstFloor.ModernUI.ViewModel"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <Style x:Key="{x:Type TextBox}" TargetType="{x:Type  TextBox}">
+            <Setter Property="MaxLength" Value="30" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+
+        <StackPanel   x:Name="Form">
+            <!-- create viewmodel -->
+
+
+            <!--<TextBlock Text="Sales" Style="{StaticResource Heading2}" Margin="0,0,0,8" />-->
+
+            <!-- create viewmodel -->
+            <StackPanel.DataContext>
+                <vm:ItemStockViewModel />
+            </StackPanel.DataContext>
+
+
+            <!-- actual form starts here -->
+            <GroupBox Header="Purchase">
+                <StackPanel  >
+
+                    <Grid Margin="0,10,0,0" >
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Content="Purchase date"  Grid.Row="2" Grid.Column="0" Height="25" VerticalAlignment="Center"  />
+                        <DatePicker x:Name="dtPurchasedate" TabIndex="1"  Grid.Row="2" Grid.Column="2" />
+
+
+
+                        <Label Content="Purchase Bill No #" Grid.Row="0" Grid.Column="4" Target="{Binding ElementName=txtPurchasebillno}"/>
+                        <TextBox x:Name="txtPurchasebillno" TabIndex="2" HorizontalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="6" Width="150" Text="{Binding PurchaseBillNo, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+
+                        <Label Content="Purchase from" Grid.Row="0" Grid.Column="0"  Target="{Binding ElementName=cmbPurchasefrom}"/>
+                        <ComboBox x:Name="cmbPurchasefrom" TabIndex="0"  DisplayMemberPath="CompanyName" SelectedValuePath="CompanyID" Grid.Row="0" Grid.Column="2"  Width="150" SelectionChanged="cmbPurchasefrom_SelectionChanged"
+                              Text="{Binding CompanyName, Mode=TwoWay, ValidatesOnDataErrors=True}"></ComboBox>
+
+
+
+
+                        <Label Content="Address" Grid.Row="0" Grid.Column="8"  Target="{Binding ElementName=TextZipCode}" Height="25" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtadress" VerticalScrollBarVisibility="Auto" MaxLength="150"  TabIndex="4" Grid.Row="0" Grid.Column="10" Grid.RowSpan="3"  Width="150" />
+
+                        <Label Content="Contact No" Grid.Row="2" Grid.Column="4"  Target="{Binding ElementName=TextZipCode}" Height="25" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtContactNo" TabIndex="3" Grid.Row="2" Grid.Column="6"  HorizontalScrollBarVisibility="Auto" Width="150" />
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Add Purchase Item">
+                <StackPanel >
+                    <!-- create viewmodel -->
+
+                    <Grid Margin="0,9,0,0" >
+
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                            <RowDefinition Height="5" ></RowDefinition>
+                            <RowDefinition Height="25" ></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="15"></ColumnDefinition>
+                            <ColumnDefinition Width="120"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <Label Content="Item Name" Grid.Row="0" Grid.Column="0" Target="{Binding ElementName=txtItemName}"/>
+                        <TextBox x:Name="txtItemName" TabIndex="5"  Grid.Row="0" Grid.Column="2" LostFocus="txtItemName_LostFocus" Text="{Binding ItemName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+
+
+
+
+                        <Label Content="Item Code" Grid.Row="2" Grid.Column="0"  Target="{Binding ElementName=txtItemCode}"/>
+                        <TextBox x:Name="txtItemCode"  TabIndex="6"  Grid.Row="2" Grid.Column="2"   Width="150" IsEnabled="False" />
+
+
+                        <Label Content="Barcode" Grid.Row="4" Grid.Column="0"  Target="{Binding ElementName=txtItemBarcode}" Height="25" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtItemBarcode" TabIndex="7" Grid.Row="4" Grid.Column="2"   Width="150" LostFocus="txtItemName_LostFocus" />
+
+                        <Label Content="Item Description" Grid.Row="6" Grid.Column="0" Height="25" VerticalAlignment="Top"/>
+                        <TextBox x:Name="txtItemDescription"  AcceptsReturn="True" MaxLength="150"  TabIndex="8" HorizontalScrollBarVisibility="Auto"  Grid.Row="6" Grid.Column="2" Grid.RowSpan="3" Height="40" TextWrapping="Wrap" Width="150" />
+
+                        <Label Content="Category" Grid.Row="0" Grid.Column="4" Target="{Binding ElementName=cmbCategory}"/>
+                        <ComboBox x:Name="cmbCategory" Grid.Row="0" TabIndex="9" Grid.Column="6"  DisplayMemberPath="Category" SelectedValuePath="CategoryID" Width="150"  DropDownClosed="cmbCategory_DropDownClosed"
+                                  Text="{Binding Category, Mode=TwoWay, ValidatesOnDataErrors=True}"></ComboBox>
+
+                        <Label Content="Sub Category" Grid.Row="2" Grid.Column="4" Target="{Binding ElementName=cmbSubCategory}"/>
+                        <ComboBox x:Name="cmbSubCategory" TabIndex="10"  DisplayMemberPath="SubCategoryName" SelectedValuePath="SubCategoryID"   DropDownClosed="cmbSubCategory_DropDownClosed" Grid.Row="2" Grid.Column="6" Width="150" 
+                                  Text="{Binding SubCategory, Mode=TwoWay, ValidatesOnDataErrors=True}" ></ComboBox>
+
+
+                        <Label Content="Type" Grid.Row="4" Grid.Column="4" Target="{Binding ElementName=cmbType}"/>
+                        <StackPanel Grid.Row="4" Grid.Column="6"  Orientation="Horizontal">
+                            <ComboBox x:Name="cmbType" Width="150" TabIndex="11"
+                                      DisplayMemberPath="Type" SelectedValuePath="TypeID"   
+                                      SelectedIndex="0" HorizontalAlignment="Right" 
+                                       Text="{Binding Type, Mode=TwoWay, ValidatesOnDataErrors=True}" DropDownClosed="cmbType_DropDownClosed" LostFocus="cmbType_LostFocus">
+                            </ComboBox>
+
+                        </StackPanel>
+
+                        <Label Content="Re Order level" Grid.Row="0" Grid.Column="8" Target="{Binding ElementName=txtReOrderLevel}"/>
+                        <TextBox x:Name="txtReOrderLevel" Text="5" TabIndex="14" Grid.Row="0" Grid.Column="10" Width="150" HorizontalAlignment="Left" />
+
+
+
+                        <Label Content="Item Expiry date" Grid.Row="2" Grid.Column="8" />
+                        <!--<TextBox x:Name="txtExpirydate"  Grid.Row="6" Grid.Column="2"  Width="150" />-->
+                        <DatePicker x:Name="dtExpirydate" TabIndex="15"  Grid.Row="2" Grid.Column="10" />
+
+
+
+                        <Label Content="Buying Price" Grid.Row="4" Grid.Column="8"/>
+                        <TextBox x:Name="txtBuyingPrice" Grid.Row="4" TabIndex="16" Grid.Column="10"  Width="150" />
+
+
+
+
+
+                        <Label Content="Sub Type" x:Name="lblSubType" Grid.Row="6" Grid.Column="4" Target="{Binding ElementName=txtsubType}"/>
+
+                        <ComboBox x:Name="cmbSubType" Width="150" Grid.Row="6" Grid.Column="6"  IsEditable="True"
+                                      DisplayMemberPath="_SubType" SelectedValuePath="SubTypeID" LostFocus="cmbType_LostFocus"
+                                      SelectedIndex="0" HorizontalAlignment="Right"  >
+                        </ComboBox>
+
+                        <Label Content="Selling Price" Grid.Row="6" Grid.Column="8" />
+                        <TextBox x:Name="txtSellingPrice" Grid.Row="6" TabIndex="17" Grid.Column="10"   Width="150" />
+
+
+
+
+                        <Label Content="Quantity" Grid.Row="8" Grid.Column="4" Target="{Binding ElementName=txtQuantity}" />
+                        <TextBox x:Name="txtQuantity" TabIndex="13" HorizontalAlignment="Left"  Text="{Binding Quantity, Mode=TwoWay, ValidatesOnDataErrors=True}" Grid.Row="8" Grid.Column="6"   Width="150" />
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.ColumnSpan="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="4">
+                            <Button Content="Add Stock Item" x:Name="btnAddItems"  Width="130"   TabIndex="18"
+                         Height="25" Click="btnAddItems_Click" />
+
+                            <Button Content="Cancel" x:Name="btnCancel" TabIndex="19" Margin="5,0,0,0" Width="100" Height="25"   Click="btnCancel_Click" />
+                        </StackPanel>
+
+
+
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Purchase items">
+                <Grid Margin="0,10,0,0" >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" ></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+
+                    <StackPanel    >
+                        <DataGrid  HorizontalAlignment="Center" CanUserAddRows="False"  Name="gridPurchaseItems" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                            <DataGrid.Columns>
+                                <mui:DataGridTextColumn Header="PurchaseDetailsID" Visibility="Collapsed"   Binding="{Binding PurchaseDetailsID}"/>
+                                <mui:DataGridTextColumn Header="Item Name" IsReadOnly="True"  Binding="{Binding ItemName}"/>
+                                <mui:DataGridTextColumn Header="Item Code" IsReadOnly="True" Binding="{Binding ItemCode}" />
+                                <mui:DataGridTextColumn Header="Category" IsReadOnly="True" Binding="{Binding Category}" />
+                                <mui:DataGridTextColumn  Header="Sub Category"  IsReadOnly="True" Binding="{Binding SubCategory}" />
+                                <mui:DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Type}" />
+                                <mui:DataGridTextColumn Header="Quantity" IsReadOnly="True" Binding="{Binding Quantity}" />
+                                <mui:DataGridTextColumn Header="Buying Price" IsReadOnly="True" Binding="{Binding BuyingPrice}" />
+                                <mui:DataGridTextColumn Header="Selling Price" IsReadOnly="True" Binding="{Binding SellingPrice}" />
+                                <!--<mui:DataGridTextColumn  Header="Purchase Bill No" IsReadOnly="True" Binding="{Binding PurchaseBillNo}" />-->
+                                <DataGridTemplateColumn >
+                                    <DataGridTemplateColumn.Header >
+                                        <TextBlock > Delete</TextBlock>
+                                    </DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Height="25" Background="Transparent" BorderBrush="Transparent" Click="DeleteButton_Click" CommandParameter="{Binding Path=PurchaseDetailsID}">
+                                                <Image Stretch="Uniform" Source="..\Images\Delete-icon.png" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.Header>Edit</DataGridTemplateColumn.Header>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Height="25"  Background="Transparent" BorderBrush="Transparent" Click="EditButton_Click" CommandParameter="{Binding Path=PurchaseDetailsID}">
+                                                <Image Stretch="Uniform" Source="..\Images\Edit.jpg" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
+
