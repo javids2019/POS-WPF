@@ -1,0 +1,3 @@
+D:\POS Backup\POS\POS.ModernUI.WPF\obj\Debug\FirstFloor.ModernUI.dll
+D:\POS Backup\POS\POS.ModernUI.WPF\obj\Debug\FirstFloor.ModernUI.pdb
+D:\POS Backup\POS\POS.ModernUI.WPF\obj\Debug\POS.ModernUI.WPF4.csprojResolveAssemblyReference.cache
