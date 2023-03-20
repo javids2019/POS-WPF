@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{2AC3CC94-8119-4CDC-A01C-02455F8E8AF5}"
+	ProjectSection(SolutionItems) = preProject
+		License.Icons.txt = License.Icons.txt
+		License.RelativeAnimatingContentControl.txt = License.RelativeAnimatingContentControl.txt
+		License.txt = License.txt
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{B74B36EF-E37C-4A70-A9C8-C0715D593B67}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Build.bat = Build\Build.bat
+		Build\ModernUI.msbuild = Build\ModernUI.msbuild
+		Build\ModernUI.WPF.nuspec = Build\ModernUI.WPF.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Binaries", "Binaries", "{14C3EC42-FD0C-4966-A684-AF2B1808A10A}"
+	ProjectSection(SolutionItems) = preProject
+		Build\Binaries\MSBuild.Community.Tasks.dll = Build\Binaries\MSBuild.Community.Tasks.dll
+		Build\Binaries\NuGet.exe = Build\Binaries\NuGet.exe
+		Build\Binaries\signvsix.exe = Build\Binaries\signvsix.exe
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.DAL", "POS.DAL\POS.DAL.csproj", "{AC6A53AF-D39F-4025-9BEC-6AED5D9BCB79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.BAL", "POS.BAL\POS.BAL.csproj", "{34C2D613-7938-4697-83D8-BC44C5D0F8A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Entities", "POS.Entities\POS.Entities.csproj", "{4E46AC32-C6B0-4EFC-82C7-C1BBA36A40D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.ModernUI.App", "POS.ModernUI.App\POS.ModernUI.App.csproj", "{BA5911EB-F34B-4F8D-AB29-6B967ED0B8DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.ModernUI.WPF4", "FirstFloor.ModernUI.WPF4\POS.ModernUI.WPF4.csproj", "{A0EA4572-2726-4585-8E17-3A81A0EAFA61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC6A53AF-D39F-4025-9BEC-6AED5D9BCB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC6A53AF-D39F-4025-9BEC-6AED5D9BCB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC6A53AF-D39F-4025-9BEC-6AED5D9BCB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC6A53AF-D39F-4025-9BEC-6AED5D9BCB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34C2D613-7938-4697-83D8-BC44C5D0F8A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C2D613-7938-4697-83D8-BC44C5D0F8A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C2D613-7938-4697-83D8-BC44C5D0F8A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C2D613-7938-4697-83D8-BC44C5D0F8A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E46AC32-C6B0-4EFC-82C7-C1BBA36A40D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E46AC32-C6B0-4EFC-82C7-C1BBA36A40D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E46AC32-C6B0-4EFC-82C7-C1BBA36A40D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E46AC32-C6B0-4EFC-82C7-C1BBA36A40D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5911EB-F34B-4F8D-AB29-6B967ED0B8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5911EB-F34B-4F8D-AB29-6B967ED0B8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5911EB-F34B-4F8D-AB29-6B967ED0B8DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5911EB-F34B-4F8D-AB29-6B967ED0B8DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EA4572-2726-4585-8E17-3A81A0EAFA61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EA4572-2726-4585-8E17-3A81A0EAFA61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EA4572-2726-4585-8E17-3A81A0EAFA61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EA4572-2726-4585-8E17-3A81A0EAFA61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14C3EC42-FD0C-4966-A684-AF2B1808A10A} = {B74B36EF-E37C-4A70-A9C8-C0715D593B67}
+	EndGlobalSection
+EndGlobal
